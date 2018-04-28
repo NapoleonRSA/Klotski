@@ -15,14 +15,16 @@ namespace ConsoleApp1
             int[] e = {1, 0, 0};
             int[] w = {1, 0, 1};
 
-            blok.hastableCode[a] = 'A';
-            blok.hastableCode[f] = 'f';
-            blok.hastableCode[j] = 'J';
-            blok.hastableCode[e] = 'E';
-            blok.hastableCode[w] = 'W';
+            blok.hastableCode.Add('A', a);
+            blok.hastableCode.Add('F',f);
+            blok.hastableCode.Add('J',j);
+            blok.hastableCode.Add('E',e);
+            blok.hastableCode.Add('W',w);
 
             setStartBoard(blok.blockBoard);
-            blok.queue.add(Arrays)
+            blok.queue.CopyTo(new[] {(blok.blockBoard)},41);
+            blok.piece.Enqueue(-1);
+            blok.toShowTree();
         }
 
         private static void setStartBoard(char[] blockBoard)
@@ -30,7 +32,7 @@ namespace ConsoleApp1
             startWide(blockBoard);
             startSmall(blockBoard);
             startBlank(blockBoard);
-        }
+        } 
 
         private static void startBlank(char[] blockBoard)
         {
