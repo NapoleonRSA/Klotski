@@ -71,6 +71,38 @@ namespace ConsoleApp1
             toShowTree();
         }
 
+        private void isSolution(char[] otherBoard)
+        {
+            if (otherBoard[18] =='J' && otherBoard[19] == 'J' && otherBoard[25]=='J')
+            {
+                winList(node_tree.Last.Value);
+            }
+        }
+        public int[] copyOfRange(int[] src, int start, int end)
+        {
+            int len = end - start;
+            int[] dest = new int[len];
+            Array.Copy(src, start, dest, 0, len);
+            return dest;
+        }
+        private void winList(int[] last)
+        {
+            PrintSolution pr = new PrintSolution();
+            LinkedList<int[]> list = new LinkedList<int[]>();
+            int parentIndex = last[0];
+            list.CopyTo(new []{last},1);
+            while (parentIndex >-1)
+            {
+                int[] parentNode = node_tree.ElementAt(parentIndex);
+                list.AddFirst(copyOfRange(parentNode,1,parentNode.Length));
+            }
+        }
+
+        private void storeChild(int[] nodeNew)
+        {
+            node_tree = new LinkedList<int[]>(new[] {nodeNew});
+        }
+
         private bool isDuplicate(int[] node, int parentInitialIndex, IEnumerator<char[]> iterator)
         {
             int[] child = new int[] { }; 
@@ -84,7 +116,7 @@ namespace ConsoleApp1
             {
                 return false;
             }
-
+            
             if (i > 35)
             {
                 return false;
